@@ -178,7 +178,7 @@ jobs:
           ip -4 addr show veth0
 
       - name: Run Alpine in UML (img root)
-        timeout-minutes: 360
+        timeout-minutes: 60
         run: |
           set -e
           # Random guest RAM: 3.0-3.5 GiB on a 64 MiB grid.
@@ -234,4 +234,4 @@ jobs:
           grep -q 'cmd exit code: 0' uml.log || { echo '::error::custom command finished with a non-zero status'; exit 1; }
           grep -q 'Power down' uml.log || { echo '::error::guest did not power down cleanly'; exit 1; }
           echo "::notice::Alpine $AVER / UML kernel $KVER finished (veth+NAT, ${MEM}M RAM, ncpus=${NCPU}, img root)"
-# sync-nonce: 5ee1ee7fb419bf00
+# sync-nonce: 06c94a8b5b3bfc46
